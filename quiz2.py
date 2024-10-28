@@ -38,7 +38,7 @@ check = [1, -2, 4, 7, -3, 5]
 result3 = check_set(check)
 print(result3)
 
-n = 50000
+n = 50
 check = list(range(n))
 
 start = time.time()
@@ -51,3 +51,21 @@ result = check_duplicate(check)
 end = time.time()
 print("check_duplicate time: ", end - start)
 
+def check_max_duplicate(check):
+    item_counts = {}
+    for i in check:
+        if i in item_counts:
+            item_counts[i] += 1
+        else:
+            item_counts[i] = 1
+    
+    max_item = None
+    for i in item_counts:
+        if item_counts[i] > 1:
+            if max_item is None or item_counts[i] > item_counts[max_item]:
+                max_item = i
+    return max_item
+
+l = [2, 5, -1, 8, -1, 5, 2, -1]
+result = check_max_duplicate(l)
+print(result)

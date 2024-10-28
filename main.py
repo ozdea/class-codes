@@ -19,88 +19,41 @@ class Date:
             self.Month = Month
             self.Year = Year
 
-today = Date(2024, 10, 14)
-print("today id: ", id(today))
+class Movie:
+    def __init__(self, name, release_year, release_month, release_day) -> None:
+        self.name = name
+        # self.release_year = release_year
+        # self.release_month = release_month
+        # self.release_day = release_day
+        self.release_date = Date(release_year, release_month, release_day)
+        self.viewers = []
+    
+    def add_viewer(self, viewer):
+        self.viewers.append(viewer)
 
-tomorrow = Date(2024, 10, 15)
-print("tomorrow id: ", id(tomorrow))
+class Viewer:
+    def __init__(self, name) -> None:
+        self.name = name
+        self.movies = []
 
-# everything is an object in Python
+    def see_movie(self, movie):
+        self.movies.append(movie)
+        movie.add_viewer(self)
+        # this would violate the data encapsulation principle
+        # movie.viewers.append(self)
+
+
+
+joker = Movie("Joker", 2024, 10, 15)
+shrek = Movie("Shrek", 2024, 11, 28)
+inside_out = Movie("Inside Out", 2024, 8, 19)
+
+caner = Viewer("caner")
+tinaz = Viewer("tinaz")
+
+caner.see_movie(joker)
+caner.see_movie(inside_out)
+tinaz.see_movie(joker)
+tinaz.see_movie(shrek)
+
 i = 4
-# i = int(4)
-print("type(i): ", type(i))
-print("id(i): ", id(i))
-
-f = 3.14
-# f = float(3.14)
-print("type(f): ", type(f))
-print("id(f): ", id(f))
-
-s = "hello, IE 201"
-# s = str("hello, IE 201")
-print("type(s): ", type(s))
-print("id(s): ", id(s))
-
-i2f = float(i)
-print("type(i2f): ", type(i2f))
-print("id(i2f): ", id(i2f))
-
-# float has a number of functions
-i2f.is_integer()
-
-print(id(s))
-print(id(s.capitalize()))
-
-
-def g(value):
-    print("within g() - before", value, id(value))
-    value += 10
-    print("within g() - after", value, id(value))
-
-value = 5
-print("outside g() - before", value, id(value))
-g(value)
-print("outside g() - after", value, id(value))
-
-
-def f(date):
-    print("within f() - before", id(date))
-    date.print()
-    date.set_date(2025, 10, 14)
-    print("within f() - after", id(date))
-    date.print()
-
-date = Date(2024, 10, 14)
-print("outside f() - before", id(date))
-date.print()
-f(date)
-print("outside f() - after", id(date))
-date.print()
-
-# immutable
-# int, float, str, tuple
-# mutable
-# set, dict, list
-
-f = 3.14
-print ("id(f): ", id(f))
-f *= 2
-print ("id(f): ", id(f))
-t = (4, 2, 1)
-# t[0] = 9
-
-my_dict = {"IE 201": "Caner", 
-           "IE 255": "Wolfgang"}
-
-is_201_taught = "IE 201" in my_dict
-if (is_201_taught):
-    my_dict["IE 201"]
-
-# don't use mutable types as dictionary keys
-today = [Date(2024, 10, 14)]
-republicDate = [Date(1923, 10, 29)]
-my_events_dict = {today: "IE 201 was taught",
-                  republicDate: "The republic was formed"}
-
-if (today in my_events_dict):
-    print(my_events_dict[today])

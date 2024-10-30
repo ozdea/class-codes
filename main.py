@@ -27,8 +27,10 @@ s.print()
 
 class NewSquare(Rectangle):
     def __init__(self, dimension):
-        self.height = dimension
-        self.width = dimension
+        super().__init__(dimension, dimension)
+        # violates data encapsulation
+        # self.height = dimension
+        # self.width = dimension
 
 ns = NewSquare(7)
 ns.print()

@@ -1,29 +1,48 @@
-# abstract class
-class Animal:
-    def talk(self):
-        pass
+class Array:
+    # O(1)
+    def __init__(self):
+        self.count = 0
+        self.start = None
 
-class Dog(Animal):
-    def talk(self):
-        print("Hav")
+    # O(1)
+    def size(self):
+        return self.count
 
-class Cat(Animal):
-    def talk(self):
-        print("Miyav")
+    # O(n)
+    def insert(self, val):
+        if self.start is None:
+            self.start = [None] * 1
+            self.start[0] = val
+            self.count = 1
+        else:
+            new_count = self.count + 1
+            new_start = [None] * new_count
+            for i in range(self.count):
+                new_start[i] = self.start[i]
+            new_start[new_count - 1] = val
+            self.count = new_count
+            self.start = new_start
 
-class Bird(Animal):
-    def talk(self):
-        print("Cik")
+    # corresponds to the in operator in Python
+    def find(self, val):
+        if self.count == 0:
+            return False
+        else:
+            for i in range(self.count):
+                if self.start[i] == val:
+                    return True
+            return False
 
-cat = Cat()
-bird = Bird()
-bird2 = Bird()
-dog = Dog()
+arr = Array()
+sz1 = arr.size()
+arr.insert(4)
+sz2 = arr.size()
+arr.insert(7)
+sz3 = arr.size()
+arr.insert(9)
+sz4 = arr.size()
 
-pets = [cat, bird, bird2, dog]
+find1 = arr.find(7)
+find2 = arr.find(19)
 
-def all_talk(pets):
-    for pet in pets:
-        pet.talk()
-
-all_talk(pets)
+i = 5

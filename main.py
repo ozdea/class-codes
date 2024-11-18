@@ -23,7 +23,24 @@ class Array:
             self.count = new_count
             self.start = new_start
 
+    # O(n)
+    def insert_front(self, val):
+        if self.start is None:
+            self.start = [None] * 1
+            self.start[0] = val
+            self.count = 1
+        else:
+            new_count = self.count + 1
+            new_start = [None] * new_count
+            for i in range(self.count):
+                new_start[i+1] = self.start[i]
+            new_start[0] = val
+            self.count = new_count
+            self.start = new_start
+
+
     # corresponds to the in operator in Python
+    # O(n) -> linear search
     def find(self, val):
         if self.count == 0:
             return False
@@ -46,3 +63,6 @@ find1 = arr.find(7)
 find2 = arr.find(19)
 
 i = 5
+
+# Python str can be interpreted as an array of characters
+# with similar algorithmic complexity associated with the functions

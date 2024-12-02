@@ -2,6 +2,12 @@ class ListNode:
     def __init__(self, val) -> None:
         self.value = val
         self.next = None
+    
+    def insert_back_recursive(self, val):
+        if self.next:
+            self.next.insert_back_recursive(val)
+        else:
+            self.next = ListNode(val)
 
 class List:
     def __init__(self) -> None:
@@ -13,8 +19,13 @@ class List:
         new_node.next = self.root
         self.root = new_node
 
+    # O(n)
     def insert_back(self, val):
-        pass
+        if self.root:
+            self.root.insert_back_recursive(val)
+        else:
+            self.insert_front(val)
+
     
     def size(self):
         pass
@@ -30,19 +41,6 @@ class List:
             self.root = self.root.next
 
 l = List()
-l.print()
-sz1 = l.size()
-print(sz1)
 l.insert_front(3)
 l.insert_front(5)
-l.insert_front(7)
-sz2 = l.size()
-print(sz2)
-
-f5 = l.find(5)
-print(f5)
-f15 = l.find(15)
-print(f15)
-
 l.insert_back(15)
-l.print()

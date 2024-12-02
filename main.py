@@ -13,44 +13,18 @@ class List:
         new_node.next = self.root
         self.root = new_node
 
-    # O(n)
     def insert_back(self, val):
-        if self.root == None:
-            self.insert_front(val)
-        else:
-            current_node = self.root
-            while current_node.next != None:
-                current_node = current_node.next
-            current_node.next = ListNode(val)
+        pass
     
-    # O(n)
     def size(self):
-        count = 0
-        current_node = self.root
-        while current_node != None:
-            count += 1
-            current_node = current_node.next
-        return count
+        pass
 
-    # O(n)
     def find(self, val):
-        current_node = self.root
-        while current_node != None:
-            if current_node.value == val:
-                return True
-            current_node = current_node.next
-        return False
+        pass
 
-    # O(n)
     def print(self):
-        print("[", end="")
-        current_node = self.root
-        while current_node != None:
-            print(current_node.value, end=" ")
-            current_node = current_node.next
-        print("]")
+        pass
 
-    # O(1)
     def remove_front(self):
         if self.root != None:
             self.root = self.root.next

@@ -28,6 +28,11 @@ class ListNode:
         if self.next:
             self.next.print_recursive()
 
+    def print_backward_recursive(self):
+        if self.next:
+            self.next.print_backward_recursive()
+        print(self.value, end=" ")
+
 class List:
     def __init__(self) -> None:
         self.root = None
@@ -63,6 +68,12 @@ class List:
         print("[", end="")
         if self.root:
             self.root.print_recursive()
+        print("]")
+
+    def print_backward(self):
+        print("[", end="")
+        if self.root:
+            self.root.print_backward_recursive()
         print("]")
 
 

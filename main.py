@@ -86,6 +86,7 @@ class Tree:
                 current_node = current_node.right
         return False
 
+    # O(n)
     def print(self):
         if self.root:
             self.root.print_recursive()

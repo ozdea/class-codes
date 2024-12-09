@@ -42,9 +42,9 @@ class TreeNode:
                 return False
 
     def print_recursive(self):
-        print(self.value, end=" ")
         if self.left:
             self.left.print_recursive()
+        print(self.value, end=" ")
         if self.right:
             self.right.print_recursive()
 

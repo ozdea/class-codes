@@ -41,6 +41,13 @@ class TreeNode:
             else:
                 return False
 
+    def print_recursive(self):
+        print(self.value, end=" ")
+        if self.left:
+            self.left.print_recursive()
+        if self.right:
+            self.right.print_recursive()
+
 
 class Tree:
     def __init__(self) -> None:
@@ -79,6 +86,10 @@ class Tree:
                 current_node = current_node.right
         return False
 
+    def print(self):
+        if self.root:
+            self.root.print_recursive()
+
 t = Tree()
 t.insert(3)
 t.insert(10)
@@ -100,3 +111,5 @@ print(f2)
 
 f3 = t.find_iterative(8)
 print(f3)
+
+t.print()

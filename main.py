@@ -1,116 +1,53 @@
-class TreeNode:
-    def __init__(self, val) -> None:
-        self.value = val
-        self.left = None
-        self.right = None
-    
-    def insert_recursive(self, val):
-        if val < self.value:
-            if self.left:
-                self.left.insert_recursive(val)
-            else:
-                self.left = TreeNode(val)
-        else:
-            if self.right:
-                self.right.insert_recursive(val)
-            else:
-                self.right = TreeNode(val)
-
-    def size_recursive(self):
-        left_size = 0
-        if self.left:
-            left_size = self.left.size_recursive()
-
-        right_size = 0
-        if self.right:
-            right_size = self.right.size_recursive()
-
-        return 1 + left_size + right_size
-
-    def find_recursive(self, val):
-        if val == self.value:
-            return True
-        elif val < self.value:
-            if self.left:
-                return self.left.find_recursive(val)
-            else:
-                return False
-        else:
-            if self.right:
-                return self.right.find_recursive(val)
-            else:
-                return False
-
-    def print_recursive(self):
-        if self.right:
-            self.right.print_recursive()
-        print(self.value, end=" ")
-        if self.left:
-            self.left.print_recursive()
-
-
-class Tree:
+class HashTable:
     def __init__(self) -> None:
-        self.root = None
+        self.BUCKET_SIZE = 100
+        self.table = [None] * self.BUCKET_SIZE
     
-    # O(n)
+    # O(1) on average
     def insert(self, val):
-        if self.root == None:
-            self.root = TreeNode(val)
-        else:
-            self.root.insert_recursive(val)
-    
-    # O(n)
-    def size(self):
-        if self.root == None:
-            return 0
-        else:
-            return self.root.size_recursive()
-    
-    # O(log n)
+        hashed_value = hash(val)
+        index = hashed_value % self.BUCKET_SIZE
+        if self.table[index] == None:
+            self.table[index] = []
+        self.table[index].append(val)
+
+    # O(1)
     def find(self, val):
-        if self.root == None:
+        hashed_value = hash(val)
+        index = hashed_value % self.BUCKET_SIZE
+        if self.table[index] == None:
             return False
         else:
-            return self.root.find_recursive(val)
-    
-    # O(log n)
-    def find_iterative(self, val):
-        current_node = self.root
-        while current_node:
-            if val == current_node.value:
-                return True
-            elif val < current_node.value:
-                current_node = current_node.left
-            else:
-                current_node = current_node.right
-        return False
+            return val in self.table[index]
 
-    # O(n)
-    def print(self):
-        if self.root:
-            self.root.print_recursive()
+    # O(n)    
+    def size(self):
+        total = 0
+        for l in self.table:
+            if l:
+                total += len(l)
+        return total
 
-t = Tree()
-t.insert(3)
-t.insert(10)
-t.insert(1)
-sz = t.size()
-print(sz)
+h = HashTable()
+h.insert("caner")
+h.insert("tamer")
+h.insert("tınaz")
+h.insert("aybek")
 
-t.insert(15)
-t.insert(8)
-t.insert(2)
-sz2 = t.size()
-print(sz2)
+f1 = h.find("caner")
+f2 = h.find("refik")
 
-f1 = t.find(8)
-print(f1)
+s = h.size()
 
-f2 = t.find(0)
-print(f2)
+i = hash("caner")
+j = hash(45353)
 
-f3 = t.find_iterative(8)
-print(f3)
+k = hash("Caner")
 
-t.print()
+print(i)
+print(k)
+
+# Python set and dict are implemented as hash tables
+s = set(["caner", "aybek"])
+
+l = 3

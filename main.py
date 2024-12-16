@@ -1,38 +1,31 @@
-# O(log n)
-def binary_search(l, val):
-    left = 0
-    right = len(l) - 1
-    while left <= right:
-        mid = (left + right) // 2
-        if l[mid] == val:
-            return True
-        elif l[mid] < val:
-            left = mid + 1
-        else:
-            right = mid - 1
-    return False
+names = ["caner", "tinaz", "mustafa", "aybek"]
+print(names)
 
-def binary_search_recursive(l, val, left, right):
-    if left > right:
-        return False
-    mid = (left + right) // 2
-    if l[mid] == val:
-        return True
-    elif l[mid] < val:
-        return binary_search_recursive(l, val, mid + 1, right)
-    else:
-        return binary_search_recursive(l, val, left, mid - 1)    
+# common but O(n^2) in the worst case
+capitalized = []
+for name in names:
+    capitalized.append(name.capitalize())
+print(capitalized)
 
-l = [1, 3, 7, 13, 18, 50, 75, 80, 99]
+# O(n) 
+n = len(names)
+capitalized2 = [None] * n
+for i in range(n):
+    capitalized2[i] = names[i].capitalize()
+print(capitalized2)
 
-f1 = binary_search(l, 75)
-print(f1)
+# List comprehension O(n)
+capitalized3 = [name.capitalize() for name in names]
+print(capitalized3)
 
-f2 = binary_search(l, 15)
-print(f2)
+# set comprehension
+capitalized_set = {name.capitalize() for name in names}
+print(capitalized_set)
 
-f3 = binary_search_recursive(l, 75, 0, len(l) - 1)
-print(f3)
+capitalized_dict = {name: name.capitalize() for name in names}
+print(capitalized_dict)
 
-f4 = binary_search_recursive(l, 15, 0, len(l) - 1)
-print(f4)
+numbers = [1, 4, -3, -5, 10]
+print(numbers)
+abs_numbers = [abs(number) for number in numbers]
+print(abs_numbers)
